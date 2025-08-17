@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { FiGithub, FiLinkedin, FiMenu, FiX } from "react-icons/fi";
 import { useState } from "react";
+import emailjs from "emailjs-com";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -9,6 +10,30 @@ const Header = () => {
   const [contactFormOpen, setContactFormOpen] = useState(false);
   const openContactForm = () => setContactFormOpen(true);
   const closeContactForm = () => setContactFormOpen(false);
+
+  // ✅ EmailJS form submission
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_caa1poi",   // 🔹 
+        "template_9omkqz9",  // 🔹 Replace with EmailJS Template ID
+        e.target,
+        "Obf3ThuZtArJDiExK"    // 🔹 Replace with EmailJS Public Key
+      )
+      .then(
+        (result) => {
+          console.log(result.text);
+          alert("Message sent successfully ✅");
+          closeContactForm();
+        },
+        (error) => {
+          console.log(error.text);
+          alert("❌ Failed to send message, please try again.");
+        }
+      );
+  };
 
   return (
     <header className="absolute w-full z-50 transition-all duration-300">
@@ -45,7 +70,7 @@ const Header = () => {
               external: true,
             },
             { name: "Experience", link: "#experience" },
-            { name: "Contact", link: "#contact" },
+            // 🔹 Removed Contact
           ].map((item, index) => (
             <motion.a
               key={item.name}
@@ -89,7 +114,7 @@ const Header = () => {
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1.3, duration: 0.8 }}
-              href="https://www.linkedin.com/in/neelmani-bhardwaj/"
+              href="https://www.linkedin.com/in/neelmani-bhardwaj-b690a52b8"
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300"
@@ -148,7 +173,7 @@ const Header = () => {
               external: true,
             },
             { name: "Experience", link: "#experience" },
-            { name: "Contact", link: "#contact" },
+            // 🔹 Removed Contact
           ].map((item) => (
             <a
               onClick={toggleMenu}
@@ -183,10 +208,57 @@ const Header = () => {
             }}
             className="mt-4 block w-full px-4 py-2 rounded-lg bg-gradient-to-r from-violet-600 to-violet-400 font-bold text-white"
           >
-            Contact me
+            Hire Me :)
           </button>
         </div>
       </motion.div>
+
+      {/* Contact Form Modal */}
+      {contactFormOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white text-black p-6 rounded-lg shadow-lg w-full max-w-md">
+            <h2 className="text-xl font-bold mb-4">Contact Me</h2>
+            <form className="space-y-4" onSubmit={sendEmail}>
+              <input
+                type="text"
+                name="from_name"
+                placeholder="Your Name"
+                className="w-full px-3 py-2 border rounded"
+                required
+              />
+              <input
+                type="email"
+                name="reply_to"
+                placeholder="Your Email"
+                className="w-full px-3 py-2 border rounded"
+                required
+              />
+              <textarea
+                name="message"
+                placeholder="Your Message"
+                className="w-full px-3 py-2 border rounded"
+                rows="4"
+                required
+              />
+              <div className="flex justify-end space-x-3">
+                <button
+                  type="button"
+                  onClick={closeContactForm}
+                  className="px-4 py-2 bg-gray-400 rounded"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  className="px-4 py-2 bg-violet-600 text-white rounded"
+                >
+                  Send
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </header>
   );
 };
