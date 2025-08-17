@@ -35,28 +35,39 @@ const Header = () => {
         </motion.div>
 
         {/* Desktop Navigation */}
-        <nav className="lg:flex hidden space-x-8">
-          {["Home", "Projects", "Certifications", "Experience", "Contact"].map(
-            (item, index) => (
-              <motion.a
-                key={item}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 100,
-                  damping: 20,
-                  delay: 0.7 + index * 0.2,
-                  duration: 1.2,
-                }}
-                href="#"
-                className="relative text-gray-800 dark:text-gray-200 hover:text-violet-600 dark:hover:text-violet-400 font-medium transition-colors duration-300 group"
-              >
-                {item}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-violet-600 group-hover:w-full transition-all duration-300"></span>
-              </motion.a>
-            )
-          )}
+        <nav className="lg:flex hidden space-x-8 items-center">
+          {[
+            { name: "Home", link: "#home" },
+            { name: "Projects", link: "#projects" },
+            {
+              name: "Certifications",
+              link: "https://www.linkedin.com/in/neelmani-bhardwaj-b690a52b8/details/certifications/",
+              external: true,
+            },
+            { name: "Experience", link: "#experience" },
+            { name: "Contact", link: "#contact" },
+          ].map((item, index) => (
+            <motion.a
+              key={item.name}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 20,
+                delay: 0.7 + index * 0.2,
+                duration: 1.2,
+              }}
+              href={item.link}
+              {...(item.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              className="relative text-gray-800 dark:text-gray-200 hover:text-violet-600 dark:hover:text-violet-400 font-medium transition-colors duration-300 group"
+            >
+              {item.name}
+              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-violet-600 group-hover:w-full transition-all duration-300"></span>
+            </motion.a>
+          ))}
         </nav>
 
         {/* Right Section */}
@@ -67,7 +78,9 @@ const Header = () => {
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1.3, duration: 0.8 }}
-              href="#"
+              href="https://github.com/Bhar007-neel"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-gray-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300"
             >
               <FiGithub className="w-6 h-6" />
@@ -76,7 +89,9 @@ const Header = () => {
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 1.3, duration: 0.8 }}
-              href="#"
+              href="https://www.linkedin.com/in/neelmani-bhardwaj/"
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-gray-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300"
             >
               <FiLinkedin className="w-6 h-6" />
@@ -99,6 +114,7 @@ const Header = () => {
           >
             Hire Me :)
           </motion.button>
+
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <motion.button
@@ -123,26 +139,40 @@ const Header = () => {
         className="md:hidden overflow-hidden bg-white dark:bg-gray-900 shadow-lg px-4 py-5 space-y-5"
       >
         <nav className="flex flex-col space-y-3">
-          {["Home", "Projects", "Certifications", "Experience", "Contact"].map(
-            (item) => (
-              <a
-                onClick={toggleMenu}
-                className="text-gray-300 font-medium py-2"
-                key={item}
-                href="#"
-              >
-                {item}
-              </a>
-            )
-          )}
+          {[
+            { name: "Home", link: "#home" },
+            { name: "Projects", link: "#projects" },
+            {
+              name: "Certifications",
+              link: "https://www.linkedin.com/in/neelmani-bhardwaj-b690a52b8/details/certifications/",
+              external: true,
+            },
+            { name: "Experience", link: "#experience" },
+            { name: "Contact", link: "#contact" },
+          ].map((item) => (
+            <a
+              onClick={toggleMenu}
+              key={item.name}
+              href={item.link}
+              {...(item.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              className="text-gray-300 font-medium py-2"
+            >
+              {item.name}
+            </a>
+          ))}
         </nav>
 
         <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
           <div className="flex space-x-5">
-            <a href="#">
+            <a href="https://github.com/Bhar007-neel" target="_blank">
               <FiGithub className="w-6 h-6 text-gray-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300" />
             </a>
-            <a href="#">
+            <a
+              href="https://www.linkedin.com/in/neelmani-bhardwaj-b690a52b8"
+              target="_blank"
+            >
               <FiLinkedin className="w-6 h-6 text-gray-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300" />
             </a>
           </div>
@@ -151,55 +181,12 @@ const Header = () => {
               toggleMenu();
               openContactForm();
             }}
-            className="mt-4 block w-full px-4 py-2 rounded-lg bg-gradient-to-r from-violet-600 to-violet-400 font-bold"
+            className="mt-4 block w-full px-4 py-2 rounded-lg bg-gradient-to-r from-violet-600 to-violet-400 font-bold text-white"
           >
             Contact me
           </button>
         </div>
       </motion.div>
-
-      {/* Contact Form Overlay */}
-      {contactFormOpen && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.5 }}
-          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-          onClick={closeContactForm}
-        >
-          {/* Inner Form (stop click propagation) */}
-          <div
-            onClick={(e) => e.stopPropagation()}
-            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md"
-          >
-            <h2 className="text-xl font-bold mb-4">Get in Touch</h2>
-            <form className="space-y-4">
-              <input
-                type="text"
-                placeholder="Your Name"
-                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white"
-              />
-              <input
-                type="email"
-                placeholder="Your Email"
-                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white"
-              />
-              <textarea
-                placeholder="Your Message"
-                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white"
-                rows="4"
-              ></textarea>
-              <button
-                type="submit"
-                className="w-full px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700"
-              >
-                Send
-              </button>
-            </form>
-          </div>
-        </motion.div>
-      )}
     </header>
   );
 };
