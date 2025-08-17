@@ -95,11 +95,10 @@ const Header = () => {
               stiffness: 100,
               damping: 15,
             }}
-            className="px-4 py-2 rounded-xl bg-gradient-to-r from-gray-500 to-gray-100 text-violet-700 font-bold hover:from-violet-600 hover:to-purple-700 hover:text-white transition-all duration-500"
+            className="hidden md:inline-flex px-4 py-2 rounded-xl bg-gradient-to-r from-gray-500 to-gray-100 text-violet-700 font-bold hover:from-violet-600 hover:to-purple-700 hover:text-white transition-all duration-500"
           >
             Hire Me :)
           </motion.button>
-
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <motion.button
@@ -148,10 +147,9 @@ const Header = () => {
             </a>
           </div>
           <button
-            onClick={()=>{
+            onClick={() => {
               toggleMenu();
               openContactForm();
-              
             }}
             className="mt-4 block w-full px-4 py-2 rounded-lg bg-gradient-to-r from-violet-600 to-violet-400 font-bold"
           >
