@@ -6,6 +6,10 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  const [contactFormOpen, setContactFormOpen] = useState(false);
+  const openContactForm = () => setContactFormOpen(true);
+  const closeContactForm = () => setContactFormOpen(false);
+
   return (
     <header className="absolute w-full z-50 transition-all duration-300">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16 md:h-20">
@@ -25,9 +29,8 @@ const Header = () => {
           <div className="h-10 w-10 rounded-xl bg-gradient-to-r from-gray-500 to-gray-700 flex items-center justify-center text-purple-600 font-bold text-xl mr-3">
             N
           </div>
-
           <span className="text-xl font-bold bg-gradient-to-r from-gray-300 to-gray-100 bg-clip-text text-transparent">
-            NeelWebPortfolio
+            Neel Bhardwaj
           </span>
         </motion.div>
 
@@ -69,7 +72,6 @@ const Header = () => {
             >
               <FiGithub className="w-6 h-6" />
             </motion.a>
-
             <motion.a
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -83,6 +85,7 @@ const Header = () => {
 
           {/* Hire Me */}
           <motion.button
+            onClick={openContactForm}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{
@@ -100,7 +103,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center">
             <motion.button
-              whileTap={toggleMenu}
+              whileTap={{ scale: 0.9 }}
               onClick={toggleMenu}
               className="text-gray-300"
             >
@@ -110,23 +113,21 @@ const Header = () => {
         </div>
       </div>
 
-      {/** Mobile Menu */}
+      {/* Mobile Menu */}
       <motion.div
         initial={{ opacity: 0, height: 0 }}
         animate={{
           opacity: isOpen ? 1 : 0,
           height: isOpen ? "auto" : 0,
         }}
-        transition={{
-          duration: 0.8,
-        }}
-        className="md:hidden overflow-hidden bg-white dark:bg-gray-900 shadow=lg px-4 py-5 space-y-5"
+        transition={{ duration: 0.8 }}
+        className="md:hidden overflow-hidden bg-white dark:bg-gray-900 shadow-lg px-4 py-5 space-y-5"
       >
         <nav className="flex flex-col space-y-3">
           {["Home", "Projects", "Certifications", "Experience", "Contact"].map(
             (item) => (
               <a
-                onclick={toggleMenu}
+                onClick={toggleMenu}
                 className="text-gray-300 font-medium py-2"
                 key={item}
                 href="#"
@@ -137,8 +138,70 @@ const Header = () => {
           )}
         </nav>
 
-        
+        <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+          <div className="flex space-x-5">
+            <a href="#">
+              <FiGithub className="w-6 h-6 text-gray-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300" />
+            </a>
+            <a href="#">
+              <FiLinkedin className="w-6 h-6 text-gray-700 dark:text-gray-300 hover:text-violet-600 dark:hover:text-violet-400 transition-colors duration-300" />
+            </a>
+          </div>
+          <button
+            onClick={()=>{
+              toggleMenu();
+              openContactForm();
+              
+            }}
+            className="mt-4 block w-full px-4 py-2 rounded-lg bg-gradient-to-r from-violet-600 to-violet-400 font-bold"
+          >
+            Contact me
+          </button>
+        </div>
       </motion.div>
+
+      {/* Contact Form Overlay */}
+      {contactFormOpen && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          onClick={closeContactForm}
+        >
+          {/* Inner Form (stop click propagation) */}
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg w-full max-w-md"
+          >
+            <h2 className="text-xl font-bold mb-4">Get in Touch</h2>
+            <form className="space-y-4">
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white"
+              />
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white"
+              />
+              <textarea
+                placeholder="Your Message"
+                className="w-full px-4 py-2 border rounded-lg dark:bg-gray-700 dark:text-white"
+                rows="4"
+              ></textarea>
+              <button
+                type="submit"
+                className="w-full px-4 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700"
+              >
+                Send
+              </button>
+            </form>
+          </div>
+        </motion.div>
+      )}
     </header>
   );
 };
