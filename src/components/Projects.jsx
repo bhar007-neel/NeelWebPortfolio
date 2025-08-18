@@ -4,37 +4,37 @@ import { motion } from "framer-motion";
 const projects = [
   {
     title: "Copacetic – Build Your Vocab",
-    img: "/public/images/Vocab.png",
+    img: "/images/Vocab.png",
     link: "https://buildyourvocab.netlify.app/"
   },
   {
     title: "Hotel Management Application",
-    img: "/public/images/Hotel.png",
+    img: "/images/Hotel.png",
     link: "https://www.youtube.com/watch?v=rybHyttDmk4&ab_channel=NeelmaniBhardwaj"
   },
   {
     title: "Job Portal Project",
-    img: "/public/images/jobportal.png",
+    img: "/images/jobportal.png",
     link: "https://job-portal-project-6tlj.onrender.com/api-doc/"
   },
   {
     title: "Neel Lifts",
-    img: "/public/images/neellifts.png",
+    img: "/images/neellifts.png",
     link: "https://neellifts.netlify.app/"
   },
   {
     title: "Event Management App",
-    img: "/public/images/event.png",
+    img: "/images/event.png",
     link: "https://www.youtube.com/watch?v=7TTZraUTWdg&ab_channel=NeelmaniBhardwaj"
   },
   {
     title: "X.com Twitter Clone",
-    img: "/public/images/twitter.png",
+    img: "/images/twitter.png",
     link: "https://bhar007-neel.github.io/X.com-Twitter-clone-using-Tailwind/"
   },
   {
     title: "Alien Invasion 2",
-    img: "/public/images/alien.png",
+    img: "/images/alien.png",
     link: "https://www.youtube.com/watch?v=dhRSaQINJB0&ab_channel=NeelmaniBhardwaj"
   }
 ];
