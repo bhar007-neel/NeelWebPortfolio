@@ -2,12 +2,7 @@
 import { motion } from "framer-motion";
 
 const experiences = [
-  {
-    company: "Loblaws",
-    role: "Front-End Supervisor",
-    date: "2025 – Present",
-    logo: "/images/loblaws.png",
-  },
+  
   {
     company: "Egg Farmers of Canada",
     role: "Data Analyst Intern",
@@ -26,6 +21,12 @@ const experiences = [
     date: "2021 – 2022",
     logo: "/images/Alstom.png",
   },
+  {
+    company: "Loblaws",
+    role: "Front-End Supervisor",
+    date: "2020 – Present",
+    logo: "/images/loblaws.png",
+  }
 ];
 
 const Experience = () => {
