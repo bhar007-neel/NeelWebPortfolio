@@ -17,10 +17,10 @@ const Header = () => {
 
     emailjs
       .sendForm(
-        "service_caa1poi",   // 🔹 
-        "template_9omkqz9",  // 🔹 Replace with EmailJS Template ID
+        "service_caa1poi",   // 🔹 Replace with your EmailJS Service ID
+        "template_9omkqz9",  // 🔹 Replace with your Template ID
         e.target,
-        "Obf3ThuZtArJDiExK"    // 🔹 Replace with EmailJS Public Key
+        "Obf3ThuZtArJDiExK"  // 🔹 Replace with your Public Key
       )
       .then(
         (result) => {
@@ -34,6 +34,17 @@ const Header = () => {
         }
       );
   };
+
+  const navItems = [
+    { name: "Home", link: "#home" },
+    { name: "Projects", link: "#projects" },
+    {
+      name: "Certifications",
+      link: "https://www.linkedin.com/in/neelmani-bhardwaj-b690a52b8/details/certifications/",
+      external: true,
+    },
+    { name: "Experience", link: "#experience" }, // ✅ Added Experience
+  ];
 
   return (
     <header className="absolute w-full z-50 transition-all duration-300">
@@ -61,17 +72,7 @@ const Header = () => {
 
         {/* Desktop Navigation */}
         <nav className="lg:flex hidden space-x-8 items-center">
-          {[
-            { name: "Home", link: "#home" },
-            { name: "Projects", link: "#projects" },
-            {
-              name: "Certifications",
-              link: "https://www.linkedin.com/in/neelmani-bhardwaj-b690a52b8/details/certifications/",
-              external: true,
-            },
-            { name: "Experience", link: "#experience" },
-            // 🔹 Removed Contact
-          ].map((item, index) => (
+          {navItems.map((item, index) => (
             <motion.a
               key={item.name}
               initial={{ opacity: 0, y: -20 }}
@@ -164,17 +165,7 @@ const Header = () => {
         className="md:hidden overflow-hidden bg-white dark:bg-gray-900 shadow-lg px-4 py-5 space-y-5"
       >
         <nav className="flex flex-col space-y-3">
-          {[
-            { name: "Home", link: "#home" },
-            { name: "Projects", link: "#projects" },
-            {
-              name: "Certifications",
-              link: "https://www.linkedin.com/in/neelmani-bhardwaj-b690a52b8/details/certifications/",
-              external: true,
-            },
-            { name: "Experience", link: "#experience" },
-            // 🔹 Removed Contact
-          ].map((item) => (
+          {navItems.map((item) => (
             <a
               onClick={toggleMenu}
               key={item.name}
