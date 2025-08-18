@@ -6,25 +6,25 @@ const experiences = [
     company: "Loblaws",
     role: "Front-End Supervisor",
     date: "2025 – Present",
-    logo: "/src/assets/images/loblaws.png",
+    logo: "/public/images/loblaws.png",
   },
   {
     company: "Egg Farmers of Canada",
     role: "Data Analyst Intern",
     date: "May 2025 – Present",
-    logo: "/src/assets/images/eggfarmers.png",
+    logo: "/public/images/eggfarmers.png",
   },
   {
     company: "Sanmina",
     role: "Electromechanical Technician",
     date: "2022 – 2023",
-    logo: "/src/assets/images/sanmina.png",
+    logo: "/public/images/sanmina.png",
   },
   {
     company: "Alstom",
     role: "Electromechanical Technician",
     date: "2021 – 2022",
-    logo: "/src/assets/images/alstom.png",
+    logo: "/public/images/alstom.png",
   },
 ];
 
