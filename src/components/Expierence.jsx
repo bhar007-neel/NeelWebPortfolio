@@ -12,19 +12,19 @@ const experiences = [
     company: "Egg Farmers of Canada",
     role: "Data Analyst Intern",
     date: "May 2025 – Present",
-    logo: "/public/images/eggfarmers.png",
+    logo: "/public/images/Eggfarmers.png",
   },
   {
     company: "Sanmina",
     role: "Electromechanical Technician",
     date: "2022 – 2023",
-    logo: "/public/images/sanmina.png",
+    logo: "/public/images/Sanmina.png",
   },
   {
     company: "Alstom",
     role: "Electromechanical Technician",
     date: "2021 – 2022",
-    logo: "/public/images/alstom.png",
+    logo: "/public/images/Alstom.png",
   },
 ];
 
