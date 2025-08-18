@@ -22,10 +22,10 @@ const ContactForm = ({ closeForm }) => {
 
     emailjs
       .send(
-        "YOUR_SERVICE_ID", // replace with your service ID
-        "YOUR_TEMPLATE_ID", // replace with your template ID
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         formData,
-        "YOUR_PUBLIC_KEY" // replace with your public key
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
       )
       .then(
         (result) => {
