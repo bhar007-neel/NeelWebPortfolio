@@ -35,9 +35,4 @@ The portfolio features **interactive backgrounds** (rockets, particles, tech vib
 ![Git](https://img.shields.io/badge/Git-F05033?style=for-the-badge&logo=git&logoColor=white)  
 ![Netlify](https://img.shields.io/badge/Netlify-00C7B7?style=for-the-badge&logo=netlify&logoColor=white)  
 
----
-
-## 📂 Folder Structure
-<details>
-<summary>Click to expand 📁</summary>
 
