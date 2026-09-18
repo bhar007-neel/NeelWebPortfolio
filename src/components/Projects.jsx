@@ -1,40 +1,48 @@
 // src/components/Projects.jsx
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
+import { FiArrowUpRight } from "react-icons/fi";
+import vocabImage from "../assets/images/Vocab.png";
+import hotelImage from "../assets/images/Hotel.png";
+import jobPortalImage from "../assets/images/jobportal.png";
+import neelLiftsImage from "../assets/images/neellifts.png";
+import eventImage from "../assets/images/event.png";
+import twitterImage from "../assets/images/twitter.png";
+import alienImage from "../assets/images/alien.png";
 
 const projects = [
   {
     title: "Copacetic – Build Your Vocab",
-    img: "/images/Vocab.png",
+    img: vocabImage,
     link: "https://buildyourvocab.netlify.app/"
   },
   {
     title: "Hotel Management Application",
-    img: "/images/Hotel.png",
+    img: hotelImage,
     link: "https://www.youtube.com/watch?v=rybHyttDmk4&ab_channel=NeelmaniBhardwaj"
   },
   {
     title: "Job Portal Project",
-    img: "/images/jobportal.png",
+    img: jobPortalImage,
     link: "https://job-portal-project-6tlj.onrender.com/api-doc/"
   },
   {
     title: "Neel Lifts",
-    img: "/images/neellifts.png",
+    img: neelLiftsImage,
     link: "https://neellifts.netlify.app/"
   },
   {
     title: "Event Management App",
-    img: "/images/event.png",
+    img: eventImage,
     link: "https://www.youtube.com/watch?v=7TTZraUTWdg&ab_channel=NeelmaniBhardwaj"
   },
   {
     title: "X.com Twitter Clone",
-    img: "/images/twitter.png",
+    img: twitterImage,
     link: "https://bhar007-neel.github.io/X.com-Twitter-clone-using-Tailwind/"
   },
   {
     title: "Alien Invasion 2",
-    img: "/images/alien.png",
+    img: alienImage,
     link: "https://www.youtube.com/watch?v=dhRSaQINJB0&ab_channel=NeelmaniBhardwaj"
   }
 ];
@@ -43,54 +51,60 @@ const Projects = () => {
   return (
     <section
       id="projects"
-      className="relative min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white py-16 px-6"
+      className="relative isolate overflow-hidden bg-[#08080c] py-24 text-white sm:py-32"
     >
-      <div className="container mx-auto">
+      <div className="absolute left-1/2 top-0 -z-10 h-80 w-80 -translate-x-1/2 rounded-full bg-violet-700/10 blur-3xl" />
+      <div className="section-container">
         {/* Heading */}
-        <h2 className="text-3xl font-bold text-center text-violet-400 mb-8">
-          Projects
-        </h2>
-
-        {/* Back button */}
-        <div className="flex justify-center mb-6">
+        <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <span className="eyebrow">Selected work</span>
+            <h2 className="section-title">Projects built with purpose.</h2>
+            <p className="section-copy">
+              A collection of full-stack applications, experiments, and
+              practical tools designed to solve real problems.
+            </p>
+          </div>
           <button
             onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-            className="px-5 py-2 bg-violet-600 text-white rounded-lg shadow hover:bg-violet-700 transition"
+            className="shrink-0 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-gray-300 transition hover:border-violet-400/30 hover:text-white"
           >
-            ⬅ Back to Home
+            Back to top ↑
           </button>
         </div>
 
-        {/* Scrollable project list */}
-        <div
-          className="max-h-[75vh] overflow-y-auto p-2 
-                     scrollbar-thin scrollbar-thumb-violet-500 
-                     scrollbar-track-gray-700"
-        >
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {projects.map((project, index) => (
-              <motion.a
-                key={index}
+              <Motion.a
+                key={project.title}
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                className="bg-gray-800 shadow-lg rounded-xl overflow-hidden 
-                           hover:shadow-violet-500/30 transition block"
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: (index % 3) * 0.08 }}
+                whileHover={{ y: -6 }}
+                className="group block overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.035] shadow-xl shadow-black/10 transition hover:border-violet-400/30 hover:bg-white/[0.055]"
               >
-                <img
-                  src={project.img}
-                  alt={project.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold text-white">
+                <div className="relative overflow-hidden">
+                  <img
+                    src={project.img}
+                    alt={project.title}
+                    className="h-52 w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-60" />
+                </div>
+                <div className="flex items-center justify-between gap-4 p-5">
+                  <h3 className="text-base font-semibold text-white">
                     {project.title}
                   </h3>
+                  <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] text-gray-300 transition group-hover:border-violet-400/40 group-hover:bg-violet-500 group-hover:text-white">
+                    <FiArrowUpRight />
+                  </span>
                 </div>
-              </motion.a>
+              </Motion.a>
             ))}
-          </div>
         </div>
       </div>
     </section>

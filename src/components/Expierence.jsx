@@ -1,32 +1,49 @@
 // src/components/Experience.jsx
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
+import nokiaLogo from "../assets/images/Nokia.svg";
+import dndLogo from "../assets/images/DND.svg";
+import eggFarmersLogo from "../assets/images/EggFarmers.png";
+import sanminaLogo from "../assets/images/Sanmina.png";
+import alstomLogo from "../assets/images/Alstom.png";
+import loblawsLogo from "../assets/images/loblaws.png";
 
 const experiences = [
-  
+  {
+    company: "Nokia",
+    role: "Event-Driven Automation Intern",
+    date: "September 2026 – Present",
+    logo: nokiaLogo,
+  },
+  {
+    company: "Department of National Defence",
+    role: "Software Developer",
+    date: "January 2026 – August 2026",
+    logo: dndLogo,
+  },
   {
     company: "Egg Farmers of Canada",
     role: "Data Analyst Intern",
     date: "May 2025 – Present",
-    logo: "/images/Eggfarmers.png",
+    logo: eggFarmersLogo,
   },
   {
     company: "Sanmina",
     role: "Electromechanical Technician",
     date: "2022 – 2023",
-    logo: "/images/Sanmina.png",
+    logo: sanminaLogo,
   },
   {
     company: "Alstom",
     role: "Electromechanical Technician",
     date: "2021 – 2022",
-    logo: "/images/Alstom.png",
+    logo: alstomLogo,
   },
   {
     company: "Loblaws",
     role: "Front-End Supervisor",
     date: "2020 – Present",
-    logo: "/images/loblaws.png",
-  }
+    logo: loblawsLogo,
+  },
 ];
 
 const Experience = () => {
@@ -37,49 +54,72 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      className="relative min-h-screen bg-gradient-to-b from-black via-gray-900 to-black text-white py-20 px-6"
+      className="relative isolate overflow-hidden bg-[#050507] py-24 text-white sm:py-32"
     >
-      <div className="container mx-auto relative z-10">
-        {/* Back button */}
-        <div className="mb-8 text-left">
+      <div className="absolute -right-24 top-32 -z-10 h-96 w-96 rounded-full bg-violet-700/10 blur-3xl" />
+      <div className="section-container">
+        <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+          <div>
+            <span className="eyebrow">My journey</span>
+            <h2 className="section-title">Experience across industries.</h2>
+            <p className="section-copy">
+              Building software, automation, and technical solutions in
+              telecommunications, public service, agriculture, and
+              manufacturing.
+            </p>
+          </div>
           <button
             onClick={scrollToHome}
-            className="px-5 py-2 bg-violet-600 text-white rounded-lg hover:bg-violet-700 transition shadow-md"
+            className="shrink-0 rounded-xl border border-white/10 bg-white/[0.04] px-4 py-2 text-sm font-medium text-gray-300 transition hover:border-violet-400/30 hover:text-white"
           >
-            ← Back to Home
+            Back to top ↑
           </button>
         </div>
 
-        {/* Title */}
-        <h2 className="text-3xl font-bold text-center text-purple-400 mb-6">
-          Experience
-        </h2>
-
-        {/* Scrollable container (especially for mobile) */}
-        <div
-          className="max-h-[75vh] overflow-y-auto p-2 
-                     scrollbar-thin scrollbar-thumb-violet-500 
-                     scrollbar-track-gray-800 rounded-lg"
-        >
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {experiences.map((exp, index) => (
-              <motion.div
-                key={index}
-                whileHover={{ scale: 1.05 }}
-                className="bg-gray-800 shadow-lg rounded-xl p-6 flex flex-col items-center text-center hover:shadow-2xl transition"
+              <Motion.div
+                key={`${exp.company}-${exp.date}`}
+                initial={{ opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.5, delay: (index % 3) * 0.08 }}
+                whileHover={{ y: -5 }}
+                className="group relative flex min-h-64 flex-col items-start overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.035] p-6 shadow-xl shadow-black/10 transition hover:border-violet-400/30 hover:bg-white/[0.055]"
               >
-                <img
-                  src={exp.logo}
-                  alt={exp.company}
-                  className="h-16 mb-4 object-contain"
-                />
-                <h3 className="text-lg font-semibold">{exp.company}</h3>
-                <p className="text-sm text-purple-400">{exp.role}</p>
-                <p className="text-xs text-gray-400 mt-2">{exp.date}</p>
-              </motion.div>
+                <div className="absolute right-5 top-5 text-xs font-medium text-gray-500">
+                  {String(index + 1).padStart(2, "0")}
+                </div>
+                {exp.logo ? (
+                  <div className="mb-6 flex h-14 w-full max-w-44 items-center justify-center rounded-xl bg-white p-2.5 shadow-sm">
+                    <img
+                      src={exp.logo}
+                      alt={`${exp.company} logo`}
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </div>
+                ) : (
+                  <div
+                    aria-hidden="true"
+                    className="h-16 min-w-16 px-3 mb-4 rounded-lg bg-violet-600 flex items-center justify-center text-lg font-bold"
+                  >
+                    {exp.initials}
+                  </div>
+                )}
+                <h3 className="text-lg font-semibold tracking-tight text-white">
+                  {exp.company}
+                </h3>
+                <p className="mt-1 text-sm font-medium text-violet-300">
+                  {exp.role}
+                </p>
+                <div className="mt-auto pt-6">
+                  <span className="rounded-full border border-white/[0.08] bg-black/20 px-3 py-1.5 text-xs text-gray-400">
+                    {exp.date}
+                  </span>
+                </div>
+              </Motion.div>
             ))}
           </div>
-        </div>
       </div>
     </section>
   );
