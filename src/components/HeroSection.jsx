@@ -8,12 +8,22 @@ const HeroSection = () => {
       id="home"
       className="relative isolate flex min-h-screen items-center overflow-hidden bg-[#050507] pb-20 pt-28"
     >
-      <div className="absolute inset-0 -z-20 bg-[radial-gradient(circle_at_20%_20%,rgba(124,58,237,0.2),transparent_32%),radial-gradient(circle_at_85%_30%,rgba(76,29,149,0.18),transparent_28%)]" />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-30 opacity-45 sm:opacity-60 lg:left-[28%] lg:opacity-75"
+      >
+        <Spline
+          className="h-full w-full scale-125 sm:scale-110 lg:scale-100"
+          scene="https://prod.spline.design/yIFajhlKahCCTtik/scene.splinecode"
+        />
+      </div>
+      <div className="absolute inset-0 -z-20 bg-[linear-gradient(90deg,#050507_0%,rgba(5,5,7,0.93)_38%,rgba(5,5,7,0.58)_68%,rgba(5,5,7,0.3)_100%)]" />
+      <div className="absolute inset-0 -z-20 bg-[linear-gradient(0deg,#050507_0%,transparent_28%,rgba(5,5,7,0.15)_75%,#050507_100%)]" />
       <div className="absolute inset-0 -z-10 bg-[linear-gradient(rgba(255,255,255,0.025)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.025)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:linear-gradient(to_bottom,black,transparent_90%)]" />
 
-      <div className="section-container flex flex-col items-center gap-12 lg:flex-row lg:gap-6">
+      <div className="section-container flex items-center">
       {/* Left section */}
-      <div className="z-10 flex max-w-3xl flex-1 flex-col items-start justify-center text-left">
+      <div className="z-10 flex max-w-3xl flex-col items-start justify-center text-left">
         <Motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -93,15 +103,6 @@ const HeroSection = () => {
         </Motion.div>
       </div>
 
-      {/* Right section with Spline */}
-      <div className="flex w-full flex-1 items-center justify-center">
-        <div className="relative h-[310px] w-[310px] sm:h-[400px] sm:w-[400px] lg:h-[420px] lg:w-[420px] xl:h-[500px] xl:w-[500px]">
-          <div className="absolute inset-6 rounded-full bg-violet-600/20 blur-3xl" />
-          <div className="relative h-full w-full overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.025] shadow-2xl shadow-violet-950/30 backdrop-blur-sm">
-          <Spline scene="https://prod.spline.design/yIFajhlKahCCTtik/scene.splinecode" />
-          </div>
-        </div>
-      </div>
       </div>
     </section>
   );
